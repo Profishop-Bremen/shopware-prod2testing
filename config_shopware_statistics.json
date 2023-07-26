@@ -1,0 +1,11 @@
+{
+  "s_statistics_currentusers": {
+    "remoteaddr": "0.0.0.0"
+  },
+  "s_statistics_pool": {
+    "remoteaddr": "0.0.0.0"
+  },
+  "s_statistics_referer": {
+    "referer": ""
+  }
+}

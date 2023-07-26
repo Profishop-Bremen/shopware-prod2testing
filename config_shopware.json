@@ -1,61 +1,66 @@
 {
-  "s_blog_comments": {
-    "email": "mail{{x}}@blogcomment.org"
+  "s_articles_vote": {
+    "name": "name{{x}}",
+    "email": "mail{{x}}@profishop.de"
   },
-  "s_campaigns_logs": {
-    "email": "mail{{x}}@campaignlogs.org"
+  "s_core_optin": {
+    "data": ""
   },
-  "s_campaigns_mailaddresses": {
-    "email": "mail{{x}}@campaigns-mailaddresses.org"
-  },
-  "s_campaigns_maildata": {
-    "email": "mail{{x}}@campaigns-maildata.org",
-    "title": "title{{x}}",
+  "s_core_payment_instance": {
     "firstname": "firstname{{x}}",
     "lastname": "lastname{{x}}",
+    "address": "address{{x}}",
+    "account_number": "",
+    "account_holder": "",
+    "iban": ""
+  },
+  "s_order_basket_signatures": {
+    "basket": ""
+  },
+  "s_blog_comments": {
+    "name": "name{{x}}",
+    "email": "mail{{x}}@profishop.de"
+  },
+  "s_campaigns_logs": {
+    "email": "mail{{x}}@profishop.de"
+  },
+  "s_campaigns_mailaddresses": {
+    "email": "mail{{x}}@profishop.de"
+  },
+  "s_campaigns_maildata": {
+    "email": "mail{{x}}@profishop.de",
     "street": "street{{x}}",
-    "zipcode": "000000",
-    "city": "city{{x}}"
+    "firstname": "firstname{{x}}",
+    "lastname": "lastname{{x}}"
   },
   "s_emarketing_referer": {
     "referer": ""
   },
   "s_emarketing_tellafriend": {
-    "recipient": "mail{{x}}@recipient.org"
+    "recipient": "mail{{x}}@profishop.de"
   },
   "s_order": {
-    "comment": "",
-    "customercomment": "",
-    "internalcomment": "",
-    "referer": "",
     "trackingcode": "",
     "remote_addr": null
   },
   "s_order_attributes": {
+    "novalnet_payment_acc_holder": "",
+    "klarna_customer_token": "",
     "attribute1": "",
     "attribute2": "",
     "attribute3": "",
     "attribute4": "",
     "attribute5": "",
-    "attribute6": "",
-    "bestit_amazon_capture_id": "",
-    "bestit_amazon_authorization_id": "",
-    "bestit_amazon_refund_id": "",
-    "bestit_amazon_simulation_code": ""
+    "attribute6": ""
   },
   "s_order_billingaddress": {
-    "company": "company{{x}}",
     "department": "department{{x}}",
-    "customernumber": "customernumber{{x}}",
     "firstname": "firstname{{x}}",
     "lastname": "lastname{{x}}",
     "street": "street{{x}}",
-    "zipcode": "00000",
-    "city": "city{{x}}",
     "phone": "phone{{x}}",
     "additional_address_line1": "additional_address_line1{{x}}",
-    "additional_address_line2": "additional_address_line2{{x}}",
-    "title": "title{{x}}"
+    "additional_address_line2": "additional_address_line2{{x}}"
   },
   "s_order_billingaddress_attributes": {
     "text1": "",
@@ -66,13 +71,9 @@
     "text6": ""
   },
   "s_order_shippingaddress": {
-    "company": "company{{x}}",
     "department": "department{{x}}",
-    "salutation": "salutation{{x}}",
     "firstname": "firstname{{x}}",
     "lastname": "lastname{{x}}",
-    "street": "street{{x}}",
-    "city": "city{{x}}",
     "phone": "phone{{x}}",
     "additional_address_line1": "additional_address_line1{{x}}",
     "additional_address_line2": "additional_address_line2{{x}}"
@@ -85,17 +86,8 @@
     "text5": "",
     "text6": ""
   },
-  "s_statistics_currentusers": {
-    "remoteaddr": "0.0.0.0"
-  },
-  "s_statistics_pool": {
-    "remoteaddr": "0.0.0.0"
-  },
-  "s_statistics_referer": {
-    "referer": ""
-  },
   "s_user": {
-    "email": "test{{x}}@test.org",
+    "email": "mail{{x}}@profishop.de",
     "firstname": "firstname{{x}}",
     "lastname": "lastname{{x}}",
     "sessionID": "",
@@ -115,8 +107,8 @@
     "city": "city{{x}}",
     "ustid": "ustid{{x}}",
     "phone": "phone{{x}}",
-    "additional_address_line1": "additional_address_line1{{x}}",
-    "additional_address_line2": "additional_address_line2{{x}}"
+    "additional_address_line1": "additional_address_line1_{{x}}",
+    "additional_address_line2": "additional_address_line2_{{x}}"
   },
   "s_user_addresses_attributes": {
     "text1": "",
@@ -125,10 +117,6 @@
     "text4": "",
     "text5": "",
     "text6": ""
-  },
-  "s_user_attributes": {
-    "bestit_amazon_user_id": "",
-    "bestit_amazon_user_name": ""
   },
   "s_user_billingaddress": {
     "company": "company{{x}}",
@@ -141,8 +129,8 @@
     "city": "city{{x}}",
     "phone": "phone{{x}}",
     "ustid": "ustid{{x}}",
-    "additional_address_line1": "additional_address_line1{{x}}",
-    "additional_address_line2": "additional_address_line2{{x}}",
+    "additional_address_line1": "additional_address_line1_{{x}}",
+    "additional_address_line2": "additional_address_line2_{{x}}",
     "title": "title{{x}}"
   },
   "s_user_billingaddress_attributes": {

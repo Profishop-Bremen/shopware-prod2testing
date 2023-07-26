@@ -1,0 +1,31 @@
+{
+  "profi_clever_reach_export": {
+    "email": "mail{{x}}@profishop.de"
+  },
+  "profi_clever_reach_merge_user_list": {
+    "email": "mail{{x}}@profishop.de"
+  },
+  "profi_ticket_mail": {
+    "mail_recipient": "mail{{x}}@profishop.de",
+    "mail_recipient_bcc": "mail{{x}}@profishop.de"
+  },
+  "profi_ticket_supplier_progress": {
+    "supplierMail": "supplier-mail{{x}}@profishop.de"
+  },
+  "s_dreisc_mail_outbox_mails": {
+    "to": "mail{{x}}@profishop.de"
+  },
+  "s_profi_catalog_voucher_log": {
+    "firstname": "firstname{{x}}",
+    "lastname": "lastname{{x}}"
+  },
+  "s_profi_offers": {
+    "usermail": "mail{{x}}@profishop.de",
+    "userstreet": "street{{x}}",
+    "useraddressadditional": "useraddressadditional{{x}}",
+    "userphone": ""
+  },
+  "s_profi_offers_items": {
+    "useremail": "mail{{x}}@profishop.de"
+  }
+}

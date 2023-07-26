@@ -1,0 +1,50 @@
+{
+  "magnalister_orders": {
+    "orderData": ""
+  },
+  "medf_claims_sysbak230": {
+    "company": "company{{x}}",
+    "firstname": "firstname{{x}}",
+    "lastname": "lastname{{x}}",
+    "street": "street{{x}}",
+    "streetnumber": "{{x}}",
+    "phone": "123456789",
+    "email": "mail{{x}}@profishop.de"
+  },
+  "medf_customersolvency_sysbak230": {
+    "company": "company{{x}}",
+    "firstname": "firstname{{x}}",
+    "lastname": "lastname{{x}}",
+    "street": "street{{x}}",
+    "streetnumber": "{{x}}",
+    "phone": "12345-100{{x}}",
+    "fax": "12345-100{{x}}"
+  },
+  "ontius_crif_last_request_info": {
+    "company": "company{{x}}",
+    "firstname": "firstname{{x}}",
+    "lastname": "lastname{{x}}",
+    "street": "street{{x}}"
+  },
+  "s_neti_easycoupon_mails": {
+    "recipient": "mail{{x}}@profishop.de"
+  },
+  "s_neti_easycoupon_personalizations": {
+    "presentee_email": "presentee{{x}}@profishop.de",
+    "donor_email": "donor{{x}}@profishop.de",
+    "presentee_name": "presentee{{x}}",
+    "donor_name": "donor{{x}}"
+  },
+  "s_novalnet_preinvoice_transaction_detail": {
+    "account_number": "",
+    "account_holder": "",
+    "bank_iban": ""
+  },
+  "s_plugin_mopt_payone_api_log": {
+    "request_details": "",
+    "response_details": ""
+  },
+  "s_plugin_mopt_payone_payment_data": {
+    "moptPaymentData": ""
+  }
+}
