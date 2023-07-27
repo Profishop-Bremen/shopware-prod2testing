@@ -159,7 +159,7 @@ class RunCommand extends ShopwareCommand
             throw new \Exception("Anonymization configuration file is not readable");
         }
 
-        $config = json_decode(file_get_contents($configFile));
+        $config = json_decode(file_get_contents($configFile), true);
 
         if (!$config) {
             $output->writeln('<error>The configuration contains invalid json</error>');
@@ -176,7 +176,7 @@ class RunCommand extends ShopwareCommand
                 throw new \Exception("The additional config '$additionalConfigFile' is not readable");
             }
 
-            $additionalConfig = json_decode(file_get_contents($additionalConfigFile));
+            $additionalConfig = json_decode(file_get_contents($additionalConfigFile), true);
             if (!$additionalConfig) {
                 throw new \Exception("The additional config '$additionalConfigFile' contains invalid json");
             }
