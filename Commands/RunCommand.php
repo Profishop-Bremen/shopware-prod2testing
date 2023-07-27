@@ -231,7 +231,7 @@ class RunCommand extends ShopwareCommand
 
                 foreach ($keyNames as $keyName) {
                     $qb->where(
-                        $qb->expr()->eq($keyName, $row[$keyName])
+                        $qb->expr()->eq($keyName, $qb->createNamedParameter($row[$keyName]))
                     );
                 }
                 $qb->execute();
