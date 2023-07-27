@@ -224,7 +224,7 @@ class RunCommand extends ShopwareCommand
                         $value = str_replace('{{x}}', $x, $value);
                     }
                     $param = ":{$columnName}_{$x}";
-                    $qb->set($columnName, $param);
+                    $qb->set('`' . $columnName . '`', $param);
                     $qb->setParameter($param, $value);
                 }
                 if (!$hasUpdate) continue;
