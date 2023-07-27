@@ -196,48 +196,88 @@ class RunCommand extends ShopwareCommand
                 continue;
             }
 
-            $output->writeln("<info>\t- $tableName</info>");
-            $keys = $this->conn->query("SHOW KEYS FROM `$tableName` WHERE Key_name = 'PRIMARY'")->fetchAll(\PDO::FETCH_ASSOC);
-            $keyNames = array_map(function ($row) {
-                return $row['Column_name'];
-            }, $keys);
-            $keyNamesString = '`' . implode('`, `', $keyNames) . '`';
-            $columnNamesString = '`' . implode('`, `', array_keys((array)$tableConfig)) . '`';
-            $x = 1;
-            $stmt = $this->conn->query("SELECT $keyNamesString, $columnNamesString FROM `$tableName`");
-            while (($row = $stmt->fetch(\PDO::FETCH_ASSOC))) {
-                $qb = $this->conn->createQueryBuilder();
-                $qb->update($tableName);
-
-                $hasUpdate = false;
-                foreach ($tableConfig as $columnName => $value) {
-                    if (!isset($informationSchema[$tableName][$columnName])) {
-                        $output->writeln("<warning>\t\tThe column '$tableName.$columnName' does not exist in db. Continuing with next column.</warning>");
-                        continue;
-                    }
-
-                    if (empty($row[$columnName])) {
-                        continue;
-                    }
-                    $hasUpdate = true;
-                    if (is_string($value)) {
-                        $value = str_replace('{{x}}', $x, $value);
-                    }
-                    $param = ":{$columnName}_{$x}";
-                    $qb->set('`' . $columnName . '`', $param);
-                    $qb->setParameter($param, $value);
-                }
-                if (!$hasUpdate) continue;
-
-                foreach ($keyNames as $keyName) {
-                    $qb->where(
-                        $qb->expr()->eq($keyName, $qb->createNamedParameter($row[$keyName]))
-                    );
-                }
-                $qb->execute();
-                $x++;
+            if ($this->hasReplacementTemplate($tableConfig)) {
+                $output->writeln("<info>\t- $tableName (by rows)</info>");
+                $this->anonymizeRows($tableName, $tableConfig, $informationSchema, $output);
+            } else {
+                $output->writeln("<info>\t- $tableName (by table)</info>");
+                $this->anonymizeTable($tableName, $tableConfig, $informationSchema, $output);
             }
         }
+    }
+
+    private function anonymizeTable($tableName, $tableConfig, $informationSchema, $output) {
+        $qb = $this->conn->createQueryBuilder();
+        $qb->update($tableName);
+
+        foreach ($tableConfig as $columnName => $value) {
+            if (!isset($informationSchema[$tableName][$columnName])) {
+                $output->writeln("<warning>\t\tThe column '$tableName.$columnName' does not exist in db. Continuing with next column.</warning>");
+                continue;
+            }
+
+            $param = ":{$columnName}";
+            $qb->set("`{$columnName}`", $param);
+            $qb->setParameter($param, $value);
+        }
+
+        $qb->execute();
+    }
+
+    private function anonymizeRows($tableName, $tableConfig, $informationSchema, $output) {
+        $keys = $this->conn->query("SHOW KEYS FROM `$tableName` WHERE Key_name = 'PRIMARY'")->fetchAll(\PDO::FETCH_ASSOC);
+        $keyNames = array_map(function ($row) {
+            return $row['Column_name'];
+        }, $keys);
+
+        $keyNamesString = '`' . implode('`, `', $keyNames) . '`';
+        $columnNamesString = '`' . implode('`, `', array_keys((array)$tableConfig)) . '`';
+
+        $x = 1;
+        $stmt = $this->conn->query("SELECT $keyNamesString, $columnNamesString FROM `$tableName`");
+
+        while (($row = $stmt->fetch(\PDO::FETCH_ASSOC))) {
+            $qb = $this->conn->createQueryBuilder();
+            $qb->update($tableName);
+
+            $hasUpdate = false;
+            foreach ($tableConfig as $columnName => $value) {
+                if (!isset($informationSchema[$tableName][$columnName])) {
+                    $output->writeln("<warning>\t\tThe column '$tableName.$columnName' does not exist in db. Continuing with next column.</warning>");
+                    continue;
+                }
+
+                if (empty($row[$columnName])) {
+                    continue;
+                }
+                $hasUpdate = true;
+                if (is_string($value)) {
+                    $value = str_replace('{{x}}', $x, $value);
+                }
+                $param = ":{$columnName}_{$x}";
+                $qb->set('`' . $columnName . '`', $param);
+                $qb->setParameter($param, $value);
+            }
+            if (!$hasUpdate) continue;
+
+            foreach ($keyNames as $keyName) {
+                $qb->where(
+                    $qb->expr()->eq($keyName, $qb->createNamedParameter($row[$keyName]))
+                );
+            }
+            $qb->execute();
+            $x++;
+        }
+    }
+
+    private function hasReplacementTemplate($tableConfig): bool {
+        foreach ($tableConfig as $columnName => $value) {
+            if (str_contains($value, "{{x}}")) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     /**
